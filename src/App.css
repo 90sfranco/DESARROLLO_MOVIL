@@ -1,0 +1,230 @@
+/* Estilos globales y contenedor principal */
+.app-container {
+  max-width: 550px;
+  margin: 40px auto;
+  padding: 24px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333333;
+}
+
+/* Encabezado */
+.app-header {
+  text-align: center;
+  margin-bottom: 24px;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 16px;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: #1a252c;
+}
+
+.app-header p {
+  margin: 6px 0 0 0;
+  color: #7f8c8d;
+  font-size: 0.95rem;
+}
+
+/* Loader / Simulación de carga */
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #e0e0e0;
+  border-top-color: #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Botones de acción principales */
+.acciones-top {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.btn-toggle-form {
+  background-color: #1976D2;
+  color: #ffffff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-toggle-form:hover {
+  background-color: #1798F3;
+}
+
+.btn-toggle-form:active {
+  transform: scale(0.98);
+}
+
+/* Formulario */
+.formulario-contacto {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+}
+
+.formulario-contacto h3 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 1.1rem;
+  color: #2c3e50;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 14px;
+  text-align: left;
+}
+
+.campo label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #4a5568;
+}
+
+.campo input {
+  padding: 10px 12px;
+  border: 1px solid #cbd5e0;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.campo input:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+}
+
+.acciones-formulario {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.btn-guardar {
+  flex: 1;
+  background-color: #2ecc71;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-guardar:hover {
+  background-color: #27ae60;
+}
+
+.btn-cancelar {
+  background-color: #ECEEF0;
+  color: #4a5568;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-cancelar:hover {
+  background-color: #cbd5e0;
+}
+
+/* Lista de Contactos */
+.lista-contactos {
+  margin-top: 10px;
+  text-align: left;
+}
+
+.lista-contactos h3 {
+  font-size: 1.1rem;
+  color: #2c3e50;
+  margin-bottom: 14px;
+}
+
+.item-contacto {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  background-color: #ffffff;
+  border: 1px solid #edf2f7;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.item-contacto:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+.info-contacto .nombre-contacto {
+  margin: 0 0 4px 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.info-contacto .telefono-contacto {
+  margin: 0;
+  font-size: 0.88rem;
+  color: #718096;
+}
+
+.btn-eliminar {
+  background-color: #fee2e2;
+  color: #dc2626;
+  border: 1px solid #fca5a5;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-eliminar:hover {
+  background-color: #dc2626;
+  color: #ffffff;
+}
+
+.mensaje-vacio {
+  padding: 30px;
+  text-align: center;
+  color: #a0aec0;
+  background-color: #ECEEF0;
+  border-radius: 10px;
+  border: 1px dashed #cbd5e0;
+}
