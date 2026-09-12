@@ -1,0 +1,57 @@
+.login-page {
+  --background: #f4f6f9;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+  padding: 16px;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.login-icon-wrapper {
+  background: var(--ion-color-primary, #3880ff);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  margin: 10px auto 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.medical-icon {
+  font-size: 36px;
+  color: #ffffff;
+}
+
+.login-title {
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: 0.5px;
+}
+
+.login-subtitle {
+  color: #666;
+  margin-top: 4px;
+  font-size: 0.9rem;
+}
+
+.login-item {
+  --background: transparent;
+  margin-bottom: 12px;
+}
+
+.login-button {
+  height: 48px;
+  font-weight: 600;
+  font-size: 1rem;
+}

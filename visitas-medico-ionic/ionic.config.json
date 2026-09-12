@@ -1,0 +1,7 @@
+{
+  "name": "visitas-medico-ionic",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
