@@ -1,0 +1,73 @@
+.task-manager-content {
+  --background: #f4f7fb;
+}
+
+ion-toolbar {
+  --background: #2563eb;
+  --color: #ffffff;
+}
+
+.task-manager {
+  width: min(100%, 640px);
+  margin: 0 auto;
+  padding: 16px 0;
+}
+
+.task-form,
+.task-list {
+  background: #ffffff;
+  border: 1px solid #dbeafe;
+  border-radius: 8px;
+}
+
+.task-form {
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.task-form ion-item {
+  --background: #ffffff;
+  --highlight-color-focused: #2563eb;
+}
+
+.task-form ion-button {
+  width: 100%;
+  margin: 12px 0 0;
+  --background: #2563eb;
+  --border-radius: 6px;
+}
+
+.task-list {
+  padding: 8px;
+}
+
+.task-card {
+  margin: 8px 0;
+  --background: #ffffff;
+  border: 1px solid #bfdbfe;
+  border-radius: 6px;
+}
+
+.task-card ion-card-content {
+  padding: 4px;
+}
+
+.task-card ion-item {
+  --background: transparent;
+  --padding-start: 4px;
+  --inner-padding-end: 4px;
+}
+
+.task-card ion-label {
+  color: #1f2937;
+}
+
+.task-card ion-checkbox {
+  --size: 20px;
+  --checkbox-background-checked: #2563eb;
+  --border-color-checked: #2563eb;
+}
+
+.task-card ion-button {
+  --border-radius: 6px;
+}
