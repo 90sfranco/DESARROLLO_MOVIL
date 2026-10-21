@@ -15,7 +15,7 @@ La autenticación real usa un proyecto Firebase y una app web registrada. Para o
 
 En la consola del proyecto usada para validar esta aplicación, Email/Password aparece habilitado:
 
-![Firebase Authentication muestra habilitado el acceso por correo electrónico y contraseña](image.png)
+![Firebase Authentication muestra habilitado el acceso por correo electrónico y contraseña](docs/images/firebase-email-password.png)
 
 Desde la carpeta del proyecto, crear el archivo de variables si aún no existe:
 
