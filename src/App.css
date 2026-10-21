@@ -1,0 +1,58 @@
+:root {
+  --ion-color-primary: #0054e9;
+  --ion-color-primary-rgb: 0, 84, 233;
+  --ion-color-primary-contrast: #fff;
+}
+
+ion-toolbar {
+  --background: #0054e9;
+  --color: #fff;
+}
+
+ion-header,
+ion-button {
+  box-shadow: none;
+  --box-shadow: none;
+}
+
+ion-header::after {
+  display: none;
+}
+
+.page-container {
+  width: min(100%, 680px);
+  margin: 0 auto;
+}
+
+.auth-page {
+  max-width: 420px;
+}
+
+h1 {
+  font-size: 1.6rem;
+}
+
+form ion-input,
+form ion-textarea {
+  margin-bottom: 16px;
+  border-bottom: 1px solid #ccc;
+}
+
+.task-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+ion-label h2,
+.user-email,
+.task-description {
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: #555;
+}
