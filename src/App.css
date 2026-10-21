@@ -32,6 +32,22 @@ h1 {
   font-size: 1.6rem;
 }
 
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.section-heading-button {
+  flex-shrink: 0;
+  margin-left: 8px;
+}
+
+.section-heading h1 {
+  margin-right: auto;
+}
+
 form ion-input,
 form ion-textarea {
   margin-bottom: 16px;
@@ -55,4 +71,20 @@ ion-label h2,
 .completed {
   text-decoration: line-through;
   color: #555;
+}
+
+.session-footer {
+  --background: #fff;
+  --color: #222;
+  text-align: center;
+  border-top: 1px solid #ddd;
+}
+
+.section-navigation {
+  display: flex;
+  align-items: center;
+}
+
+.section-navigation .contacts-link {
+  margin-left: auto;
 }

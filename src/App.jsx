@@ -4,6 +4,9 @@ import { IonApp, IonContent, IonPage, IonRouterOutlet, setupIonicReact } from '@
 import { IonReactRouter } from '@ionic/react-router';
 import { AuthContext, AuthProvider } from './context/AuthContext.jsx';
 import { TasksProvider } from './context/TasksContext.jsx';
+import { NetworkProvider } from './context/NetworkContext.jsx';
+import Contacts from './pages/Contacts.jsx';
+import Fruits from './pages/Fruits.jsx';
 import Login from './pages/Login.jsx';
 import Register from './pages/Register.jsx';
 import TasksList from './pages/TasksList.jsx';
@@ -26,21 +29,24 @@ function AppRoutes() {
     return <IonPage><IonContent className="ion-padding">Cargando sesión…</IonContent></IonPage>;
   }
 
-  // Cambiar de usuario desmonta las páginas y las tareas de la sesión anterior.
   return (
-    <TasksProvider key={user?.uid ?? 'guest'}>
-      <IonReactRouter key={user?.uid ?? 'guest'}>
-        <IonRouterOutlet>
-          <Route path="/login" element={user ? <Navigate to="/tasks" replace /> : <Login />} />
-          <Route path="/register" element={user ? <Navigate to="/tasks" replace /> : <Register />} />
-          <Route path="/tasks" element={user ? <TasksList /> : <Navigate to="/login" replace />} />
-          <Route path="/tasks/new" element={user ? <TaskForm /> : <Navigate to="/login" replace />} />
-          <Route path="/tasks/:id/edit" element={user ? <TaskForm /> : <Navigate to="/login" replace />} />
-          <Route path="/tasks/:id" element={user ? <TaskDetail /> : <Navigate to="/login" replace />} />
-          <Route path="*" element={<Navigate to={user ? '/tasks' : '/login'} replace />} />
-        </IonRouterOutlet>
-      </IonReactRouter>
-    </TasksProvider>
+    <NetworkProvider>
+      <TasksProvider key={user?.uid ?? 'guest'}>
+        <IonReactRouter key={user?.uid ?? 'guest'}>
+          <IonRouterOutlet>
+            <Route path="/contacts" element={user ? <Contacts /> : <Navigate to="/login" replace />} />
+            <Route path="/fruits" element={user ? <Fruits /> : <Navigate to="/login" replace />} />
+            <Route path="/login" element={user ? <Navigate to="/tasks" replace /> : <Login />} />
+            <Route path="/register" element={user ? <Navigate to="/tasks" replace /> : <Register />} />
+            <Route path="/tasks" element={user ? <TasksList /> : <Navigate to="/login" replace />} />
+            <Route path="/tasks/new" element={user ? <TaskForm /> : <Navigate to="/login" replace />} />
+            <Route path="/tasks/:id/edit" element={user ? <TaskForm /> : <Navigate to="/login" replace />} />
+            <Route path="/tasks/:id" element={user ? <TaskDetail /> : <Navigate to="/login" replace />} />
+            <Route path="*" element={<Navigate to={user ? '/tasks' : '/login'} replace />} />
+          </IonRouterOutlet>
+        </IonReactRouter>
+      </TasksProvider>
+    </NetworkProvider>
   );
 }
 

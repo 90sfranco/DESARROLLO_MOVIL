@@ -5,12 +5,12 @@ import {
   IonTextarea, IonTitle, IonToolbar, useIonRouter, useIonViewWillEnter,
 } from '@ionic/react';
 import { TasksContext } from '../context/TasksContext.jsx';
+import AppNavigation from '../components/AppNavigation.jsx';
+import SessionFooter from '../components/SessionFooter.jsx';
 
-export default function TaskForm() {
-  const { id } = useParams();
+function TaskEditor({ id, task }) {
   const router = useIonRouter();
-  const { tasks, addTask, editTask } = useContext(TasksContext);
-  const task = tasks.find((item) => item.id === id);
+  const { addTask, editTask, disabled } = useContext(TasksContext);
   const [title, setTitle] = useState(task?.title ?? '');
   const [description, setDescription] = useState(task?.description ?? '');
   const [error, setError] = useState('');
@@ -21,38 +21,44 @@ export default function TaskForm() {
     setError('');
   });
 
-  function handleSave(event) {
+  async function handleSave(event) {
     event.preventDefault();
+    if (disabled) return;
     if (!title.trim()) {
       setError('Escribe un título para la tarea.');
       return;
     }
-    if (id) {
-      editTask(id, title, description);
-    } else {
-      addTask(title, description);
-    }
-    router.push('/tasks', 'back', 'replace');
+    setError('');
+    const saved = id ? await editTask(id, title, description) : await addTask(title, description);
+    if (saved) router.push('/tasks', 'back', 'replace');
   }
 
   return (
+    <form onSubmit={handleSave}>
+      <IonInput label="Título" labelPlacement="stacked" required disabled={disabled} value={title}
+        onIonInput={(event) => setTitle(event.detail.value ?? '')} />
+      <IonTextarea label="Descripción" labelPlacement="stacked" autoGrow disabled={disabled} value={description}
+        onIonInput={(event) => setDescription(event.detail.value ?? '')} />
+      {error && <IonText color="danger"><p role="alert">{error}</p></IonText>}
+      <IonButton expand="block" type="submit" disabled={disabled}>Guardar tarea</IonButton>
+    </form>
+  );
+}
+
+export default function TaskForm() {
+  const { id } = useParams();
+  const { tasks, loading, error } = useContext(TasksContext);
+  const task = tasks.find((item) => item.id === id);
+  return (
     <IonPage>
       <IonHeader><IonToolbar><IonTitle>{id ? 'Editar tarea' : 'Agregar tarea'}</IonTitle></IonToolbar></IonHeader>
-      <IonContent className="ion-padding">
-        <div className="page-container">
-          {id && !task ? <p>La tarea no existe.</p> : (
-            <form onSubmit={handleSave}>
-              <IonInput label="Título" labelPlacement="stacked" required value={title}
-                onIonInput={(event) => setTitle(event.detail.value ?? '')} />
-              <IonTextarea label="Descripción" labelPlacement="stacked" autoGrow value={description}
-                onIonInput={(event) => setDescription(event.detail.value ?? '')} />
-              {error && <IonText color="danger"><p role="alert">{error}</p></IonText>}
-              <IonButton expand="block" type="submit">Guardar tarea</IonButton>
-            </form>
-          )}
-          <IonButton fill="clear" routerLink="/tasks" routerDirection="back">Volver a la lista</IonButton>
-        </div>
-      </IonContent>
+      <IonContent className="ion-padding"><div className="page-container">
+        <AppNavigation />
+        {error && <IonText color="danger"><p role="alert">{error}</p></IonText>}
+        {id && !task ? <p>{loading ? 'Cargando tarea…' : 'La tarea no existe.'}</p> : <TaskEditor key={id ?? 'new'} id={id} task={task} />}
+        <IonButton fill="clear" routerLink="/tasks" routerDirection="back">Volver a la lista</IonButton>
+      </div></IonContent>
+      <SessionFooter />
     </IonPage>
   );
 }
