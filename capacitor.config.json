@@ -1,0 +1,14 @@
+{
+  "appId": "com.franco.challenge07",
+  "appName": "Challenge 07",
+  "webDir": "dist",
+  "plugins": {
+    "PushNotifications": {
+      "presentationOptions": [
+        "badge",
+        "sound",
+        "alert"
+      ]
+    }
+  }
+}
