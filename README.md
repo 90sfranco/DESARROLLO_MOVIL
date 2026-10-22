@@ -38,6 +38,8 @@ Reiniciar el servidor después de cambiar `.env`. Sin esta configuración, la ap
 
 Requiere Node.js 22.12 o superior:
 
+Desde la raíz del repositorio, instala las dependencias de la rama activa antes de iniciar. Repite `npm ci` después de cambiar de rama: Git cambia los archivos del proyecto, pero no actualiza `node_modules`. Si el servidor estaba abierto, detenlo con `Ctrl+C` antes de instalar y vuelve a iniciarlo al terminar.
+
 ```bash
 npm ci
 npm run dev
