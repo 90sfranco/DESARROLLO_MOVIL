@@ -1,7 +1,5 @@
 {
-  "name": "CHALLENGE_07",
+  "name": "parcial-2",
   "type": "react-vite",
-  "integrations": {
-    "capacitor": {}
-  }
+  "integrations": { "capacitor": {} }
 }

@@ -1,15 +1,13 @@
+import { useContext } from 'react';
 import { Navigate, Route } from 'react-router-dom';
-import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
+import { IonApp, IonContent, IonPage, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import Home from './pages/Home.jsx';
-import GeolocationPage from './pages/GeolocationPage.jsx';
-import CameraPage from './pages/CameraPage.jsx';
-import MotionPage from './pages/MotionPage.jsx';
-import DevicePage from './pages/DevicePage.jsx';
-import HapticsPage from './pages/HapticsPage.jsx';
-import FilesystemPage from './pages/FilesystemPage.jsx';
-import LocalNotificationsPage from './pages/LocalNotificationsPage.jsx';
-import PushNotificationsPage from './pages/PushNotificationsPage.jsx';
+import { AuthContext, AuthProvider } from './context/AuthContext.jsx';
+import { MissionsProvider } from './context/MissionsContext.jsx';
+import Login from './pages/Login.jsx';
+import Register from './pages/Register.jsx';
+import Missions from './pages/Missions.jsx';
+import Results from './pages/Results.jsx';
 import '@ionic/react/css/core.css';
 import '@ionic/react/css/normalize.css';
 import '@ionic/react/css/structure.css';
@@ -19,23 +17,24 @@ import './App.css';
 
 setupIonicReact();
 
+function Routes({ user }) {
+  return <IonReactRouter>
+    <IonRouterOutlet>
+      <Route path="/login" element={user ? <Navigate to="/missions" replace /> : <Login />} />
+      <Route path="/register" element={user ? <Navigate to="/missions" replace /> : <Register />} />
+      <Route path="/missions" element={user ? <Missions /> : <Navigate to="/login" replace />} />
+      <Route path="/results" element={user ? <Results /> : <Navigate to="/login" replace />} />
+      <Route path="*" element={<Navigate to={user ? '/missions' : '/login'} replace />} />
+    </IonRouterOutlet>
+  </IonReactRouter>;
+}
+function AppRoutes() {
+  const { user, loading } = useContext(AuthContext);
+  if (loading) return <IonPage><IonContent className="ion-padding">Cargando sesión…</IonContent></IonPage>;
+  return user
+    ? <MissionsProvider key={user.uid}><Routes user={user} /></MissionsProvider>
+    : <Routes key="guest" user={null} />;
+}
 export default function App() {
-  return (
-    <IonApp>
-      <IonReactRouter>
-        <IonRouterOutlet>
-          <Route path="/home" element={<Home />} />
-          <Route path="/geolocation" element={<GeolocationPage />} />
-          <Route path="/camera" element={<CameraPage />} />
-          <Route path="/motion" element={<MotionPage />} />
-          <Route path="/device" element={<DevicePage />} />
-          <Route path="/haptics" element={<HapticsPage />} />
-          <Route path="/filesystem" element={<FilesystemPage />} />
-          <Route path="/local-notifications" element={<LocalNotificationsPage />} />
-          <Route path="/push-notifications" element={<PushNotificationsPage />} />
-          <Route path="*" element={<Navigate to="/home" replace />} />
-        </IonRouterOutlet>
-      </IonReactRouter>
-    </IonApp>
-  );
+  return <IonApp><AuthProvider><AppRoutes /></AuthProvider></IonApp>;
 }
